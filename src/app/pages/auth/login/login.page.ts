@@ -37,7 +37,11 @@ export class LoginPage implements OnInit {
   }
 
   login(form: NgForm) {
-    this.authService.login(form.value.email, form.value.password).subscribe(
+    console.log("entro");
+    this.alertService.presentToast("Logged In");
+    this.dismissLogin();
+    this.navCtrl.navigateRoot('/dashboard');
+    /*this.authService.login(form.value.email, form.value.password).subscribe(
       data => {
         this.alertService.presentToast("Logged In");
       },
@@ -48,7 +52,7 @@ export class LoginPage implements OnInit {
         this.dismissLogin();
         this.navCtrl.navigateRoot('/dashboard');
       }
-    );
+    );*/
   }
 
 }
