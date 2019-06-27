@@ -15,6 +15,8 @@ export class AuthService {
   isLoggedIn = false;
   token:any;
 
+
+
   constructor(
     private http: HttpClient,
     private storage: NativeStorage,
@@ -43,9 +45,19 @@ export class AuthService {
   }
 
   register(fName: String, lName: String, email: String, password: String) {
-    return this.http.post(this.env.API_URL + 'auth/register',
-      {fName: fName, lName: lName, email: email, password: password}
+    console.log('registro');
+    console.log(this.env.API_URL + '/user/register');
+
+    const headers = new HttpHeaders().set('Access-Control-Allow-Origin', '*')
+    .set('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
+    .set('Accept', 'application/json')
+    .set('Content-Type', 'application/json; charset=utf-8');
+
+    return this.http.post(this.env.API_URL + '/user/register',
+      {fName: fName, lName: lName, email: email, password: password},
+      { headers: headers},
     )
+    
   }
 
   logout() {
